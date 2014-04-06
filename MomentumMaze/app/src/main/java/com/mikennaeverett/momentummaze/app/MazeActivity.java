@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+// I love toast!
+
+
 import java.util.ArrayList;
 
 public class MazeActivity extends Activity implements View.OnClickListener {
