@@ -7,26 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MazeActivity extends Activity implements View.OnClickListener {
-    private ListView menuListView;
-    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
-
-        ArrayList<Button> menuList = new ArrayList<Button>();
-        menuList.add((Button)this.findViewById(R.id.levelSelectButton));
-        menuList.add((Button)this.findViewById(R.id.instructionsButton));
-
-        LevelListAdapter menuListAdapter = new LevelListAdapter(this, R.layout.level_list_cell, menuList);
-        menuListView = (ListView)this.findViewById(android.R.id.list);
-        menuListView.setAdapter(menuListAdapter);
+        setContentView(R.layout.activity_maze);
 
         ArrayList<Button> levelList = new ArrayList<Button>();
         levelList.add((Button)this.findViewById(R.id.levelOneButton));
@@ -37,7 +26,7 @@ public class MazeActivity extends Activity implements View.OnClickListener {
         levelList.add((Button)this.findViewById(R.id.levelSixButton));
 
         LevelListAdapter levelListAdapter = new LevelListAdapter(this, R.layout.level_list_cell, levelList);
-        listView = (ListView)this.findViewById(android.R.id.list);
+        ListView listView = (ListView)this.findViewById(android.R.id.list);
         listView.setAdapter(levelListAdapter);
     }
 

@@ -45,8 +45,8 @@
             android:text="@string/levelSixLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </LinearLayout>
 
+    </LinearLayout>
 
     <ListView
         android:id="@android:id/list"
@@ -54,8 +54,6 @@
         android:layout_height="0dip"
         android:background="#FFFFFF"
         android:drawSelectorOnTop="false"
-        android:clickable="true"
-        android:choiceMode="singleChoice" />
-
+        android:clickable="true" />
 
 </RelativeLayout>
