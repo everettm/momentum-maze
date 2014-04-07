@@ -14,7 +14,6 @@ public class MazeActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
-
         Button button = (Button)this.findViewById(R.id.instructionsButton);
         button.setOnClickListener(this);
         button = (Button)this.findViewById(R.id.levelSelectButton);

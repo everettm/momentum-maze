@@ -11,5 +11,6 @@
     <string name="levelSixLabel">Level Six</string>
     <string name="selectLevelLabel">Select a Level</string>
     <string name="instructionLabel">Instructions</string>
+    <string name="resetButtonLabel">Reset Maze</string>
 
 </resources>
