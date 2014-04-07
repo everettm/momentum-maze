@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Momentum Maze</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="levelOneLabel">Level One</string>
     <string name="levelTwoLabel">Level Two</string>
@@ -10,7 +9,7 @@
     <string name="levelFourLabel">Level Four</string>
     <string name="levelFiveLabel">Level Five</string>
     <string name="levelSixLabel">Level Six</string>
-    <string name="levelSelectLabel">Choose a Level</string>
-    <string name="instructionsLabel">Instructions</string>
+    <string name="selectLevelLabel">Select a Level</string>
+    <string name="instructionLabel">Instructions</string>
 
 </resources>

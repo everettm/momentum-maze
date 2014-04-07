@@ -6,33 +6,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-
-// I love toast!
-
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 public class MazeActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maze);
+        setContentView(R.layout.main_page);
 
-        ArrayList<Button> levelList = new ArrayList<Button>();
-        levelList.add((Button)this.findViewById(R.id.levelOneButton));
-        levelList.add((Button)this.findViewById(R.id.levelTwoButton));
-        levelList.add((Button)this.findViewById(R.id.levelThreeButton));
-        levelList.add((Button)this.findViewById(R.id.levelFourButton));
-        levelList.add((Button)this.findViewById(R.id.levelFiveButton));
-        levelList.add((Button)this.findViewById(R.id.levelSixButton));
-
-        LevelListAdapter levelListAdapter = new LevelListAdapter(this, R.layout.level_list_cell, levelList);
-        ListView listView = (ListView)this.findViewById(android.R.id.list);
-        listView.setAdapter(levelListAdapter);
+        Button button = (Button)this.findViewById(R.id.instructionsButton);
+        button.setOnClickListener(this);
+        button = (Button)this.findViewById(R.id.levelSelectButton);
+        button.setOnClickListener(this);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,6 +43,12 @@ public class MazeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        
+        if (view.getId() == R.id.levelSelectButton) {
+            setContentView(R.layout.level_select);
+        }
+        else if (view.getId() == R.id.instructionsButton) {
+            Toast toast = Toast.makeText(this, "Hello for now...", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }
