@@ -9,21 +9,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MazeActivity extends Activity implements View.OnClickListener {
-
+/**
+ * Created by mikenna on 4/7/14.
+ */
+public class LevelSelectActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_page);
-        Button button = (Button)this.findViewById(R.id.instructionsButton);
-        button.setOnClickListener(this);
-        button = (Button)this.findViewById(R.id.levelSelectButton);
+        setContentView(R.layout.level_select);
+        Button button = (Button)this.findViewById(R.id.levelOneButton);
         button.setOnClickListener(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.maze, menu);
         return true;
@@ -43,13 +43,14 @@ public class MazeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.levelSelectButton) {
-            Intent intent = new Intent(this, LevelSelectActivity.class);
+        if (view.getId() == R.id.levelOneButton) {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
             startActivity(intent);
         }
-        else if (view.getId() == R.id.instructionsButton) {
-            Toast toast = Toast.makeText(this, "Hello for now...", Toast.LENGTH_SHORT);
+        else if (view.getId() == R.id.levelTwoButton) {
+            Toast toast = Toast.makeText(this, "Two!", Toast.LENGTH_SHORT);
             toast.show();
         }
+
     }
 }
