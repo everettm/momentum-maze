@@ -17,7 +17,10 @@ public class LevelSelectActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level_select);
+
         Button button = (Button)this.findViewById(R.id.levelOneButton);
+        button.setOnClickListener(this);
+        button = (Button)this.findViewById(R.id.levelTwoButton);
         button.setOnClickListener(this);
     }
 
@@ -51,6 +54,9 @@ public class LevelSelectActivity extends Activity implements View.OnClickListene
             Toast toast = Toast.makeText(this, "Two!", Toast.LENGTH_SHORT);
             toast.show();
         }
-
+        else {
+            Toast toast = Toast.makeText(this, "BAAAH!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }
