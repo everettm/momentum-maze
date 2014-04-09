@@ -7,6 +7,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.os.Build;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,8 +25,26 @@ public class Maze {
     public Cell startPoint, endPoint, currentPoint;
     public char[][] grid;
 
-    public Maze() {
-        mazeString = "start: (0,0)\nend: (4,4)\nXXXXXXXXXXXXXXXXXXXXX\nX           X       X\nX   XXXXX   X       X\nX                   X\nX   X           XXXXX\nX   X               X\nX   X   XXXXX       X\nX                   X\nX   XXXXX   X   XXXXX\nX           X       X\nXXXXXXXXXXXXXXXXXXXXX";
+    public Maze(int levelNum) {
+        if(levelNum == 1){
+            mazeString = "start: (0,0)\nend: (4,4)\nXXXXXXXXXXXXXXXXXXXXX\nX           X       X\nX   XXXXX   X       X\nX                   X\nX   X           XXXXX\nX   X               X\nX   X   XXXXX       X\nX                   X\nX   XXXXX   X   XXXXX\nX           X       X\nXXXXXXXXXXXXXXXXXXXXX";
+        }
+        else if (levelNum == 2) {
+            mazeString = "start: (2,2)\nend: (3,3)\nXXXXXXXXXXXXXXXXXXXXXXXXX\nX   X               X   X\nX   X   XXXXX       X   X\nX                       X\nX   X   X   X   XXXXX   X\nX   X   X   X           X\nX   X   XXXXXXXXX       X\nX           X   X       X\nXXXXX       X   X       X\nX                       X\nX       X   X       XXXXX\nX       X   X           X\nXXXXXXXXXXXXXXXXXXXXXXXXX";
+        }
+        else if (levelNum == 3) {
+            mazeString = "start: (0,3)\nend: (5,2)\nXXXXXXXXXXXXXXXXXXXXXXXXX\nX           X           X\nX       XXXXX       XXXXX\nX                       X\nXXXXX   XXXXX       X   X\nX                   X   X\nX           X       XXXXX\nX           X           X\nX   X       XXXXX       X\nX   X                   X\nXXXXX   X       X   X   X\nX       X       X   X   X\nXXXXXXXXXXXXXXXXXXXXXXXXX";
+        }
+        else if (levelNum == 4) {
+            mazeString = "start: (0,2)\nend: (6,4)\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nX                   X       X\nX       X   XXXXX   X       X\nX       X                   X\nXXXXX   X   X   XXXXX   XXXXX\nX           X               X\nXXXXX       X       X       X\nX                   X       X\nX           X   XXXXX   XXXXX\nX           X               X\nX   XXXXX   X           XXXXX\nX       X                   X\nXXXXX   X   X       XXXXX   X\nX           X       X       X\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+        }
+        else if (levelNum == 5) {
+            mazeString = "start: (4,1)\nend: (2,4)\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nX   X           X           X\nX   X   XXXXX   X       XXXXX\nX                           X\nX           X           X   X\nX           X           X   X\nX   XXXXX   X   X   X   X   X\nX               X   X       X\nX           XXXXX   X   XXXXX\nX                           X\nXXXXX   X   X   XXXXX       X\nX       X   X               X\nX       XXXXX  X        X   X\nX              X        X   X\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+        }
+        else {
+            mazeString = "start: (5,3)\nend: (3,5)\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nX           X               X       X\nXXXXX   X   X   X   XXXXX   X   XXXXX\nX       X                       X   X\nX   XXXXX   X   XXXXX   X   X   X   X\nX                       X   X       X      \nX   X   X   X   X   X   X   X   X   X\nX       X           X               X\nXXXXX   X   XXXXX   XXXXX   X   XXXXX\nX                           X       X\nX   X   X   XXXXX   XXXXX   X   X   X                            \nX               X   X               X\nX   XXXXX   X   X   X   XXXXX   XXXXX\nX   X                               X\nX   X   XXXXX   XXXXX   X   X   X   X\nX                   X               X\nXXXXX   X   XXXXX   X   X   XXXXX   X\nX               X               X   X\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+        }
+
         parseMazeFile();
     }
 
@@ -200,5 +219,21 @@ public class Maze {
             output += "\n";
         }
         return output;
+    }
+
+    public void moveRight() {
+        // move current position right until it hits a wall
+    }
+
+    public void moveLeft() {
+        // move current position left
+    }
+
+    public void moveUp() {
+        // move current position up
+    }
+
+    public void moveDown() {
+        // move current position down
     }
 }
