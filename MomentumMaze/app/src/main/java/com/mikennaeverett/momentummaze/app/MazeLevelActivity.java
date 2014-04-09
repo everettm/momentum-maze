@@ -1,6 +1,12 @@
 package com.mikennaeverett.momentummaze.app;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +17,9 @@ import android.widget.Toast;
 
 import com.mikennaeverett.momentummaze.app.GestureFilter.SimpleGestureListener;
 import android.view.MotionEvent;
+
+import java.io.FileReader;
+import java.io.IOException;
 
 
 /**
@@ -25,29 +34,55 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.level);
-
-        prefs = new SharedPrefs(this);
-        prefs.loadPrefs();
-        highUnlocked = prefs.getHighUnlocked();
 
         Intent intent = getIntent(); // gets the previously created intent
         levelNumber = intent.getIntExtra("levelNumber", 0);
         String levNum = Integer.toString(levelNumber);
         Toast.makeText(this, levNum, Toast.LENGTH_SHORT).show();
 
-        Button button = (Button)this.findViewById(R.id.resetButton);
+        Bitmap bg = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bg);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+//        AssetManager assetManager = getAssets();
+//
+//        AssetFileDescriptor descriptor = null;
+//        try {
+//            descriptor = assetManager.openFd("mazeFiles/mazeL1.txt");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        FileReader reader = new FileReader(descriptor.getFileDescriptor());
+        MazeFragment fragment = new MazeFragment(this, new Maze());
+//        MazeFragment fragment = null;
+//        try {
+//            fragment = new MazeFragment(this, new Maze(reader));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        fragmentTransaction.add(R.id.game_fragment, fragment);
+        fragmentTransaction.commit();
+
+        setContentView(R.layout.level);
+
+        prefs = new SharedPrefs(this);
+        prefs.loadPrefs();
+        highUnlocked = prefs.getHighUnlocked();
+
+        Button button = (Button) this.findViewById(R.id.resetButton);
         button.setOnClickListener(this);
-        button = (Button)this.findViewById(R.id.previousLevelButton);
+        button = (Button) this.findViewById(R.id.previousLevelButton);
         button.setOnClickListener(this);
-        button = (Button)this.findViewById(R.id.nextLevelButton);
+        button = (Button) this.findViewById(R.id.nextLevelButton);
         button.setOnClickListener(this);
 
-        button = (Button)this.findViewById(R.id.winLevelButton);
+        button = (Button) this.findViewById(R.id.winLevelButton);
         button.setOnClickListener(this);
 
         // Detect touched area
-        detector = new GestureFilter(this,this);
+        detector = new GestureFilter(this, this);
     }
 
     @Override

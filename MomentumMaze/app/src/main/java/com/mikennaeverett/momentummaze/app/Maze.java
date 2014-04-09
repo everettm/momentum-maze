@@ -4,6 +4,8 @@ package com.mikennaeverett.momentummaze.app;
  * Created by mikenna on 4/9/14.
  */
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.os.Build;
 
 import java.io.BufferedReader;
@@ -19,18 +21,19 @@ public class Maze {
     public int mazeDimX, mazeDimY, gridDimX, gridDimY;
     public String mazeString;
     public Cell[][] cells; // 2d array of Cells
-    public Cell startPoint, endPoint;
+    public Cell startPoint, endPoint, currentPoint;
     public char[][] grid;
 
-    public Maze(String mazeFile) throws FileNotFoundException {
-        mazeString = readMazeFromFile(mazeFile);
+    public Maze() {
+        mazeString = "start: (0,0)\nend: (4,4)\nXXXXXXXXXXXXXXXXXXXXX\nX           X       X\nX   XXXXX   X       X\nX                   X\nX   X           XXXXX\nX   X               X\nX   X   XXXXX       X\nX                   X\nX   XXXXX   X   XXXXX\nX           X       X\nXXXXXXXXXXXXXXXXXXXXX";
         parseMazeFile();
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public String readMazeFromFile(String fileName) throws FileNotFoundException {
+    public String readMazeFromFile(FileReader fr) throws FileNotFoundException {
         String everything = "";
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
+
+        BufferedReader br = new BufferedReader(fr);
         try {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -115,25 +118,34 @@ public class Maze {
         }
 
         startPoint = getCell(startX, startY);
+        currentPoint = startPoint;
         endPoint = getCell(endX, endY);
     }
 
-    private class Cell {
-        int x, y; // coordinates
+    public static class Cell {
+        public int x, y; // coordinates
         // cells this cell is connected to
         ArrayList<Cell> neighbors = new ArrayList<Cell>();
         // impassable cell
         boolean wall = true;
         // construct Cell at x, y
-        Cell(int x, int y) {
+        public Cell(int x, int y) {
             this(x, y, true);
         }
         // construct Cell at x, y and with whether it isWall
-        Cell(int x, int y, boolean isWall) {
+        public Cell(int x, int y, boolean isWall) {
             this.x = x;
             this.y = y;
             this.wall = isWall;
         }
+
+        public boolean isNeighbor(Cell other) {
+            if (this.neighbors.contains(other)) {
+                return true;
+            }
+            return false;
+        }
+
         // add a neighbor to this cell, and this cell as a neighbor to the other
         void addNeighbor(Cell other) {
             if (!this.neighbors.contains(other)) { // avoid duplicates
