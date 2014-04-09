@@ -16,6 +16,11 @@ public class MazeActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
 
+        SharedPrefs prefs = new SharedPrefs(this);
+        prefs.loadPrefs();
+        //prefs.setHighUnlocked(1);
+        //prefs.savePrefs();
+
         Button button = (Button)this.findViewById(R.id.instructionsButton);
         button.setOnClickListener(this);
         button = (Button)this.findViewById(R.id.levelSelectButton);

@@ -19,11 +19,17 @@ import android.view.MotionEvent;
 public class MazeLevelActivity extends Activity implements View.OnClickListener, SimpleGestureListener {
     private GestureFilter detector;
     private int levelNumber;
+    private int highUnlocked;
+    private SharedPrefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level);
+
+        prefs = new SharedPrefs(this);
+        prefs.loadPrefs();
+        highUnlocked = prefs.getHighUnlocked();
 
         Intent intent = getIntent(); // gets the previously created intent
         levelNumber = intent.getIntExtra("levelNumber", 0);
@@ -80,13 +86,20 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         }
         if (view.getId() == R.id.nextLevelButton) {
             if (levelNumber == 6) {
-                Toast toast = Toast.makeText(this, "There is no next level", Toast.LENGTH_SHORT);
+                {
+                    Toast toast = Toast.makeText(this, "There are no more levels", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+            else if (levelNumber >= highUnlocked) {
+
+                Toast toast = Toast.makeText(this, "The next level is not unlocked", Toast.LENGTH_SHORT);
                 toast.show();
             }
             else {
-            Intent intent = new Intent(this, MazeLevelActivity.class);
-            intent.putExtra("levelNumber",levelNumber+1);
-            startActivity(intent);
+                Intent intent = new Intent(this, MazeLevelActivity.class);
+                intent.putExtra("levelNumber",levelNumber+1);
+                startActivity(intent);
             }
 
         }
@@ -119,6 +132,23 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
 
     @Override
     public void onDoubleTap() {
-        Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
+
     }
+
+    /*void onLevelCompleted() {
+        if (levelNumber >= highUnlocked) {
+            prefs.setHighUnlocked(levelNumber);
+            prefs.savePrefs();
+        }
+        if (levelNumber == 6) {
+            Toast toast = Toast.makeText(this, "You win!", Toast.LENGTH_SHORT);
+            toast.show();
+            Intent intent = new Intent(this, MazeActivity.class);
+            startActivity(intent);
+        }
+        Intent intent = new Intent(this, MazeLevelActivity.class);
+        intent.putExtra("levelNumber",levelNumber+1);
+        startActivity(intent);
+
+    }*/
 }

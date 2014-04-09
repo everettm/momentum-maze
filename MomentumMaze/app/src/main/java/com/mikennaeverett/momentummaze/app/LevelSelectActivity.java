@@ -9,14 +9,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mikennaeverett.momentummaze.app.SharedPrefs;
+
+
+
 /**
  * Created by mikenna on 4/7/14.
  */
 public class LevelSelectActivity extends Activity implements View.OnClickListener {
+    private int highUnlocked;
+    private SharedPrefs prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level_select);
+
+        prefs = new SharedPrefs(this);
+        prefs.loadPrefs();
+        highUnlocked = prefs.getHighUnlocked();
+        //prefs.setHighUnlocked(2);
+        //prefs.savePrefs();
+        //highUnlocked = prefs.getHighUnlocked();
 
         Button button = (Button)this.findViewById(R.id.levelOneButton);
         button.setOnClickListener(this);
@@ -60,29 +74,59 @@ public class LevelSelectActivity extends Activity implements View.OnClickListene
             startActivity(intent);
         }
         else if (view.getId() == R.id.levelTwoButton) {
-            Intent intent = new Intent(this, MazeLevelActivity.class);
-            intent.putExtra("levelNumber",2);
-            startActivity(intent);
+            if (2 <= highUnlocked){
+                Intent intent = new Intent(this, MazeLevelActivity.class);
+                intent.putExtra("levelNumber",2);
+                startActivity(intent);
+            }
+            else {
+                Toast toast = Toast.makeText(this, "That level is locked", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
         else if (view.getId() == R.id.levelThreeButton) {
-            Intent intent = new Intent(this, MazeLevelActivity.class);
-            intent.putExtra("levelNumber",3);
-            startActivity(intent);
+            if (3 <= highUnlocked){
+                Intent intent = new Intent(this, MazeLevelActivity.class);
+                intent.putExtra("levelNumber",3);
+                startActivity(intent);
+            }
+            else {
+                Toast toast = Toast.makeText(this, "That level is locked", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
         else if (view.getId() == R.id.levelFourButton) {
-            Intent intent = new Intent(this, MazeLevelActivity.class);
-            intent.putExtra("levelNumber",4);
-            startActivity(intent);
+            if (4 <= highUnlocked){
+                Intent intent = new Intent(this, MazeLevelActivity.class);
+                intent.putExtra("levelNumber",4);
+                startActivity(intent);
+            }
+            else {
+                Toast toast = Toast.makeText(this, "That level is locked", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
         else if (view.getId() == R.id.levelFiveButton) {
-            Intent intent = new Intent(this, MazeLevelActivity.class);
-            intent.putExtra("levelNumber",5);
-            startActivity(intent);
+            if (5 <= highUnlocked){
+                Intent intent = new Intent(this, MazeLevelActivity.class);
+                intent.putExtra("levelNumber",5);
+                startActivity(intent);
+            }
+            else {
+                Toast toast = Toast.makeText(this, "That level is locked", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
         else if (view.getId() == R.id.levelSixButton) {
-            Intent intent = new Intent(this, MazeLevelActivity.class);
-            intent.putExtra("levelNumber",6);
-            startActivity(intent);
+            if (6 <= highUnlocked){
+                Intent intent = new Intent(this, MazeLevelActivity.class);
+                intent.putExtra("levelNumber",6);
+                startActivity(intent);
+            }
+            else {
+                Toast toast = Toast.makeText(this, "That level is locked", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
         else {
             Toast toast = Toast.makeText(this, "BAAAH!", Toast.LENGTH_SHORT);
