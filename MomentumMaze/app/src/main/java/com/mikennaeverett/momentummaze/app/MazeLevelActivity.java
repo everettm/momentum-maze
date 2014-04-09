@@ -43,6 +43,9 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         button = (Button)this.findViewById(R.id.nextLevelButton);
         button.setOnClickListener(this);
 
+        button = (Button)this.findViewById(R.id.winLevelButton);
+        button.setOnClickListener(this);
+
         // Detect touched area
         detector = new GestureFilter(this,this);
     }
@@ -84,7 +87,7 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
             Toast toast = Toast.makeText(this, "This is where a reset would happen!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        if (view.getId() == R.id.nextLevelButton) {
+        else if (view.getId() == R.id.nextLevelButton) {
             if (levelNumber == 6) {
                 {
                     Toast toast = Toast.makeText(this, "There are no more levels", Toast.LENGTH_SHORT);
@@ -102,6 +105,11 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
                 startActivity(intent);
             }
 
+        }
+        else if (view.getId() == R.id.winLevelButton) {
+            Toast toast = Toast.makeText(this, "level up!", Toast.LENGTH_SHORT);
+            toast.show();
+            onLevelCompleted();
         }
     }
 
@@ -135,20 +143,20 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
 
     }
 
-    /*void onLevelCompleted() {
-        if (levelNumber >= highUnlocked) {
-            prefs.setHighUnlocked(levelNumber);
-            prefs.savePrefs();
-        }
+    void onLevelCompleted() {
         if (levelNumber == 6) {
             Toast toast = Toast.makeText(this, "You win!", Toast.LENGTH_SHORT);
             toast.show();
             Intent intent = new Intent(this, MazeActivity.class);
             startActivity(intent);
         }
+        if (levelNumber == highUnlocked) {
+            prefs.setHighUnlocked(levelNumber+1);
+            prefs.savePrefs();
+        }
         Intent intent = new Intent(this, MazeLevelActivity.class);
         intent.putExtra("levelNumber",levelNumber+1);
         startActivity(intent);
 
-    }*/
+    }
 }
