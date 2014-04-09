@@ -22,7 +22,7 @@ public class GestureFilter extends GestureDetector.SimpleOnGestureListener{
 
     private final static int ACTION_FAKE = -13; //just an unlikely number
     private int swipe_Min_Distance = 100;
-    private int swipe_Max_Distance = 350;
+    private int swipe_Max_Distance = 550;
     private int swipe_Min_Velocity = 100;
 
     private int mode             = MODE_DYNAMIC;
