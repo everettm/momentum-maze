@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.mikennaeverett.momentummaze.app.GestureFilter.SimpleGestureListener;
@@ -17,11 +18,17 @@ import android.view.MotionEvent;
  */
 public class MazeLevelActivity extends Activity implements View.OnClickListener, SimpleGestureListener {
     private GestureFilter detector;
+    private int levelNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level);
+
+        Intent intent = getIntent(); // gets the previously created intent
+        levelNumber = intent.getIntExtra("levelNumber", 0);
+        String levNum = Integer.toString(levelNumber);
+        Toast.makeText(this, levNum, Toast.LENGTH_SHORT).show();
 
         Button button = (Button)this.findViewById(R.id.resetButton);
         button.setOnClickListener(this);
@@ -57,16 +64,31 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.previousLevelButton) {
-            Toast toast = Toast.makeText(this, "This would take you to the previous level!", Toast.LENGTH_SHORT);
-            toast.show();
+            if (levelNumber == 1) {
+                Toast toast = Toast.makeText(this, "There is no previous level", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",levelNumber-1);
+            startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.resetButton) {
             Toast toast = Toast.makeText(this, "This is where a reset would happen!", Toast.LENGTH_SHORT);
             toast.show();
         }
         if (view.getId() == R.id.nextLevelButton) {
-            Toast toast = Toast.makeText(this, "This would take you to the next level!", Toast.LENGTH_SHORT);
-            toast.show();
+            if (levelNumber == 6) {
+                Toast toast = Toast.makeText(this, "There is no next level", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",levelNumber+1);
+            startActivity(intent);
+            }
+
         }
     }
 

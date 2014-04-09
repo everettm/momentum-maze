@@ -22,6 +22,14 @@ public class LevelSelectActivity extends Activity implements View.OnClickListene
         button.setOnClickListener(this);
         button = (Button)this.findViewById(R.id.levelTwoButton);
         button.setOnClickListener(this);
+        button = (Button)this.findViewById(R.id.levelThreeButton);
+        button.setOnClickListener(this);
+        button = (Button)this.findViewById(R.id.levelFourButton);
+        button.setOnClickListener(this);
+        button = (Button)this.findViewById(R.id.levelFiveButton);
+        button.setOnClickListener(this);
+        button = (Button)this.findViewById(R.id.levelSixButton);
+        button.setOnClickListener(this);
     }
 
     @Override
@@ -48,11 +56,33 @@ public class LevelSelectActivity extends Activity implements View.OnClickListene
     public void onClick(View view) {
         if (view.getId() == R.id.levelOneButton) {
             Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",1);
             startActivity(intent);
         }
         else if (view.getId() == R.id.levelTwoButton) {
-            Toast toast = Toast.makeText(this, "Two!", Toast.LENGTH_SHORT);
-            toast.show();
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",2);
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.levelThreeButton) {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",3);
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.levelFourButton) {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",4);
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.levelFiveButton) {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",5);
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.levelSixButton) {
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",6);
+            startActivity(intent);
         }
         else {
             Toast toast = Toast.makeText(this, "BAAAH!", Toast.LENGTH_SHORT);
