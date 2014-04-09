@@ -1,0 +1,15 @@
+start: (0,3)
+end: (5,2)
+XXXXXXXXXXXXXXXXXXXXXXXXX
+X           X           X
+X       XXXXX       XXXXX
+X                       X
+XXXXX   XXXXX       X   X
+X                   X   X
+X           X       XXXXX
+X           X           X
+X   X       XXXXX       X
+X   X                   X
+XXXXX   X       X   X   X
+X       X       X   X   X
+XXXXXXXXXXXXXXXXXXXXXXXXX
