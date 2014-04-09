@@ -1,0 +1,24 @@
+start: (5,3)
+end: (3,5)
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X           X               X       X
+XXXXX   X   X   X   XXXXX   X   XXXXX
+X       X                       X   X
+X   XXXXX   X   XXXXX   X   X   X   X
+X                       X   X       X      
+X   X   X   X   X   X   X   X   X   X
+X       X           X               X
+XXXXX   X   XXXXX   XXXXX   X   XXXXX
+X                           X       X
+X   X   X   XXXXX   XXXXX   X   X   X                            
+X               X   X               X
+X   XXXXX   X   X   X   XXXXX   XXXXX
+X   X                               X
+X   X   XXXXX   XXXXX   X   X   X   X
+X                   X               X
+XXXXX   X   XXXXX   X   X   XXXXX   X
+X               X               X   X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+9X9

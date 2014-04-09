@@ -1,0 +1,17 @@
+start: (0,2)
+end: (6,4)
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X                   X       X
+X       X   XXXXX   X       X
+X       X                   X
+XXXXX   X   X   XXXXX   XXXXX
+X           X               X
+XXXXX       X       X       X
+X                   X       X
+X           X   XXXXX   XXXXX
+X           X               X
+X   XXXXX   X           XXXXX
+X       X                   X
+XXXXX   X   X       XXXXX   X
+X           X       X       X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
