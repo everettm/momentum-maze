@@ -8,10 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mikennaeverett.momentummaze.app.GestureFilter.SimpleGestureListener;
+import android.view.MotionEvent;
+
+
 /**
  * Created by mikenna on 4/7/14.
  */
-public class MazeLevelActivity extends Activity implements View.OnClickListener {
+public class MazeLevelActivity extends Activity implements View.OnClickListener, SimpleGestureListener {
+    private GestureFilter detector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,9 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener 
         button.setOnClickListener(this);
         button = (Button)this.findViewById(R.id.nextLevelButton);
         button.setOnClickListener(this);
+
+        // Detect touched area
+        detector = new GestureFilter(this,this);
     }
 
     @Override
@@ -59,5 +68,35 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener 
             Toast toast = Toast.makeText(this, "This would take you to the next level!", Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent me){
+        // Call onTouchEvent of SimpleGestureFilter class
+        this.detector.onTouchEvent(me);
+        return super.dispatchTouchEvent(me);
+    }
+    @Override
+    public void onSwipe(int direction) {
+        String str = "";
+
+        switch (direction) {
+
+            case GestureFilter.SWIPE_RIGHT : str = "Swipe Right";
+                break;
+            case GestureFilter.SWIPE_LEFT :  str = "Swipe Left";
+                break;
+            case GestureFilter.SWIPE_DOWN :  str = "Swipe Down";
+                break;
+            case GestureFilter.SWIPE_UP :    str = "Swipe Up";
+                break;
+
+        }
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDoubleTap() {
+        Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
     }
 }
