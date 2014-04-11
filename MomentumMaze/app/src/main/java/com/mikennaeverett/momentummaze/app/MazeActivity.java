@@ -14,7 +14,7 @@ public class MazeActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(android.R.layout.main_page);
+        setContentView(R.layout.main_page);
 
         SharedPrefs prefs = new SharedPrefs(this);
         prefs.loadPrefs();
@@ -54,7 +54,7 @@ public class MazeActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
         else if (view.getId() == R.id.instructionsButton) {
-            Toast toast = Toast.makeText(this, "Hello for now...", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Just play with it man!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
