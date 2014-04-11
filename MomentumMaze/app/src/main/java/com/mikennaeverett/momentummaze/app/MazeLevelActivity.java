@@ -1,6 +1,7 @@
 package com.mikennaeverett.momentummaze.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +11,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mikennaeverett.momentummaze.app.GestureFilter.SimpleGestureListener;
-import android.view.MotionEvent;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -21,6 +24,7 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
     private int levelNumber;
     private int highUnlocked;
     private SharedPrefs prefs;
+    private Set<Integer> recordedSwipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         prefs = new SharedPrefs(this);
         prefs.loadPrefs();
         highUnlocked = prefs.getHighUnlocked();
+        recordedSwipes = new HashSet<Integer>();
 
         Intent intent = getIntent(); // gets the previously created intent
         levelNumber = intent.getIntExtra("levelNumber", 0);
@@ -126,16 +131,24 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         switch (direction) {
 
             case GestureFilter.SWIPE_RIGHT : str = "Swipe Right";
+                recordedSwipes.add(GestureFilter.SWIPE_RIGHT);
                 break;
             case GestureFilter.SWIPE_LEFT :  str = "Swipe Left";
+                recordedSwipes.add(GestureFilter.SWIPE_LEFT);
                 break;
             case GestureFilter.SWIPE_DOWN :  str = "Swipe Down";
+                recordedSwipes.add(GestureFilter.SWIPE_DOWN);
                 break;
             case GestureFilter.SWIPE_UP :    str = "Swipe Up";
+                recordedSwipes.add(GestureFilter.SWIPE_UP);
                 break;
 
         }
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+        if (recordedSwipes.size() == 4) {
+            Toast.makeText(this, "Nice! ALL THE THINGS! Next level!", Toast.LENGTH_SHORT).show();
+            onLevelCompleted();
+        }
     }
 
     @Override
