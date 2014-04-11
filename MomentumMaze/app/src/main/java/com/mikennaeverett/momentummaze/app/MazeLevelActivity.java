@@ -32,6 +32,8 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level);
 
+
+
         prefs = new SharedPrefs(this);
         prefs.loadPrefs();
         highUnlocked = prefs.getHighUnlocked();
@@ -54,6 +56,8 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
 
         // Detect touched area
         detector = new GestureFilter(this,this);
+
+        setNeutralImage();
     }
 
     @Override
@@ -130,22 +134,23 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         String str = "";
         ImageView img= (ImageView) findViewById(R.id.level_image_display);
 
+
         switch (direction) {
 
             case GestureFilter.SWIPE_RIGHT : str = "Swipe Right";
                 recordedSwipes.add(GestureFilter.SWIPE_RIGHT);
-                img.setImageResource(R.drawable.cat1);
+                setRightImage();
                 break;
             case GestureFilter.SWIPE_LEFT :  str = "Swipe Left";
                 recordedSwipes.add(GestureFilter.SWIPE_LEFT);
-                img.setImageResource(R.drawable.cat2);
+                setLeftImage();
                 break;
             case GestureFilter.SWIPE_DOWN :  str = "Swipe Down";
                 recordedSwipes.add(GestureFilter.SWIPE_DOWN);
-                img.setImageResource(android.R.drawable.cat3);
+                setDownImage();
                 break;
             case GestureFilter.SWIPE_UP :    str = "Swipe Up";
-                img.setImageResource(R.drawable.cat4);
+                setUpImage();
                 recordedSwipes.add(GestureFilter.SWIPE_UP);
                 break;
 
@@ -154,6 +159,142 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         if (recordedSwipes.size() == 4) {
             Toast.makeText(this, "Nice! ALL THE THINGS! Next level!", Toast.LENGTH_SHORT).show();
             onLevelCompleted();
+        }
+    }
+
+
+     public void setNeutralImage() {
+        String str = "";
+        ImageView img= (ImageView) findViewById(R.id.level_image_display);
+
+        switch (levelNumber) {
+
+            case 1:
+                img.setImageResource(R.drawable.neutral1);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.neutral2);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.neutral3);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.neutral4);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.neutral5);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.neutral6);
+                break;
+        }
+    }
+
+    public void setLeftImage() {
+        String str = "";
+        ImageView img= (ImageView) findViewById(R.id.level_image_display);
+
+        switch (levelNumber) {
+
+            case 1:
+                img.setImageResource(R.drawable.left1);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.left2);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.left3);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.left4);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.left5);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.left6);
+                break;
+        }
+    }
+
+    public void setRightImage() {
+        String str = "";
+        ImageView img= (ImageView) findViewById(R.id.level_image_display);
+
+        switch (levelNumber) {
+
+            case 1:
+                img.setImageResource(R.drawable.right1);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.right2);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.right3);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.right4);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.right5);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.right6);
+                break;
+        }
+    }
+
+    public void setUpImage() {
+        String str = "";
+        ImageView img= (ImageView) findViewById(R.id.level_image_display);
+
+        switch (levelNumber) {
+
+            case 1:
+                img.setImageResource(R.drawable.up1);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.up2);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.up3);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.up4);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.up5);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.up6);
+                break;
+        }
+    }
+
+    public void setDownImage() {
+        String str = "";
+        ImageView img= (ImageView) findViewById(R.id.level_image_display);
+
+        switch (levelNumber) {
+
+            case 1:
+                img.setImageResource(R.drawable.down1);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.down2);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.down3);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.down4);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.down5);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.down6);
+                break;
         }
     }
 
