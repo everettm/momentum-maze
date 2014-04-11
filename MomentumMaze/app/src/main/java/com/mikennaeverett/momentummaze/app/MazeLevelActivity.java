@@ -126,31 +126,30 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
     }
     @Override
     public void onSwipe(int direction) {
-        String str = "";
         ImageView img= (ImageView) findViewById(R.id.level_image_display);
 
 
         switch (direction) {
 
-            case GestureFilter.SWIPE_RIGHT : str = "Swipe Right";
+            case GestureFilter.SWIPE_RIGHT :
                 recordedSwipes.add(GestureFilter.SWIPE_RIGHT);
                 setRightImage();
                 break;
-            case GestureFilter.SWIPE_LEFT :  str = "Swipe Left";
+            case GestureFilter.SWIPE_LEFT :
                 recordedSwipes.add(GestureFilter.SWIPE_LEFT);
                 setLeftImage();
                 break;
-            case GestureFilter.SWIPE_DOWN :  str = "Swipe Down";
+            case GestureFilter.SWIPE_DOWN :
                 recordedSwipes.add(GestureFilter.SWIPE_DOWN);
                 setDownImage();
                 break;
-            case GestureFilter.SWIPE_UP :    str = "Swipe Up";
+            case GestureFilter.SWIPE_UP :
                 setUpImage();
                 recordedSwipes.add(GestureFilter.SWIPE_UP);
                 break;
 
         }
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+
         if (recordedSwipes.size() == 4) {
             Toast.makeText(this, "Nice! ALL THE THINGS! Next level!", Toast.LENGTH_SHORT).show();
             onLevelCompleted();
