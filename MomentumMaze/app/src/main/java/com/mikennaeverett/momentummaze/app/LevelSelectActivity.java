@@ -28,9 +28,9 @@ public class LevelSelectActivity extends Activity implements View.OnClickListene
         prefs = new SharedPrefs(this);
         prefs.loadPrefs();
         highUnlocked = prefs.getHighUnlocked();
-        //prefs.setHighUnlocked(2);
-        //prefs.savePrefs();
-        //highUnlocked = prefs.getHighUnlocked();
+        prefs.setHighUnlocked(2);
+        prefs.savePrefs();
+        highUnlocked = prefs.getHighUnlocked();
 
         Button button = (Button)this.findViewById(R.id.levelOneButton);
         button.setOnClickListener(this);

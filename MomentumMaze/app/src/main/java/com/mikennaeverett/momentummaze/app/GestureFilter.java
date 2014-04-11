@@ -1,6 +1,8 @@
 package com.mikennaeverett.momentummaze.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
