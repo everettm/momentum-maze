@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mikennaeverett.momentummaze.app.GestureFilter.SimpleGestureListener;
@@ -127,19 +128,24 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
     @Override
     public void onSwipe(int direction) {
         String str = "";
+        ImageView img= (ImageView) findViewById(R.id.level_image_display);
 
         switch (direction) {
 
             case GestureFilter.SWIPE_RIGHT : str = "Swipe Right";
                 recordedSwipes.add(GestureFilter.SWIPE_RIGHT);
+                img.setImageResource(R.drawable.cat1);
                 break;
             case GestureFilter.SWIPE_LEFT :  str = "Swipe Left";
                 recordedSwipes.add(GestureFilter.SWIPE_LEFT);
+                img.setImageResource(R.drawable.cat2);
                 break;
             case GestureFilter.SWIPE_DOWN :  str = "Swipe Down";
                 recordedSwipes.add(GestureFilter.SWIPE_DOWN);
+                img.setImageResource(android.R.drawable.cat3);
                 break;
             case GestureFilter.SWIPE_UP :    str = "Swipe Up";
+                img.setImageResource(R.drawable.cat4);
                 recordedSwipes.add(GestureFilter.SWIPE_UP);
                 break;
 

@@ -14,7 +14,7 @@ public class MazeActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_page);
+        setContentView(android.R.layout.main_page);
 
         SharedPrefs prefs = new SharedPrefs(this);
         prefs.loadPrefs();
