@@ -307,16 +307,17 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         if (levelNumber == 6) {
             Toast toast = Toast.makeText(this, "You win!", Toast.LENGTH_SHORT);
             toast.show();
-            Intent intent = new Intent(this, MazeActivity.class);
+
+        }
+        else {
+            if (levelNumber == highUnlocked) {
+                prefs.setHighUnlocked(levelNumber+1);
+                prefs.savePrefs();
+            }
+            Intent intent = new Intent(this, MazeLevelActivity.class);
+            intent.putExtra("levelNumber",levelNumber+1);
             startActivity(intent);
         }
-        if (levelNumber == highUnlocked) {
-            prefs.setHighUnlocked(levelNumber+1);
-            prefs.savePrefs();
-        }
-        Intent intent = new Intent(this, MazeLevelActivity.class);
-        intent.putExtra("levelNumber",levelNumber+1);
-        startActivity(intent);
 
     }
 }
