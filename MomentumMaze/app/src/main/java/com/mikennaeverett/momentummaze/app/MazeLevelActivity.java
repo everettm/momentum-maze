@@ -51,8 +51,6 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
         button = (Button)this.findViewById(R.id.nextLevelButton);
         button.setOnClickListener(this);
 
-        button = (Button)this.findViewById(R.id.winLevelButton);
-        button.setOnClickListener(this);
 
         // Detect touched area
         detector = new GestureFilter(this,this);
@@ -117,11 +115,7 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
             }
 
         }
-        else if (view.getId() == R.id.winLevelButton) {
-            Toast toast = Toast.makeText(this, "level up!", Toast.LENGTH_SHORT);
-            toast.show();
-            onLevelCompleted();
-        }
+
     }
 
     @Override
