@@ -94,8 +94,9 @@ public class MazeLevelActivity extends Activity implements View.OnClickListener,
             }
         }
         else if (view.getId() == R.id.resetButton) {
-            Toast toast = Toast.makeText(this, "This is where a reset would happen!", Toast.LENGTH_SHORT);
-            toast.show();
+            setNeutralImage();
+            //Toast toast = Toast.makeText(this, "This is where a reset would happen!", Toast.LENGTH_SHORT);
+            //toast.show();
         }
         else if (view.getId() == R.id.nextLevelButton) {
             if (levelNumber == 6) {
